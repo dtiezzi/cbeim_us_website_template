@@ -1,0 +1,15 @@
+td {
+  font-size: medium;
+}
+
+div#table_top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+div#table_bottom {
+  display: flex;
+  justify-content: space-around;
+}

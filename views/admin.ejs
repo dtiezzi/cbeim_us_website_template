@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/admin.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><strong>US HOME</strong></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/user"
+                >Back</a
+              >
+            </li>
+          </ul>
+        </div>
+        <form class="d-flex" method="GET" action="/logout">
+          <input class="form-control me-2" type="hidden" />
+          <button class="btn btn-danger" type="submit">LOG OUT</button>
+        </form>
+      </div>
+    </nav>
+    <div class="my_container_top">
+      <h1>US MEMBERS' LIST</h1>
+      <br />
+      <div>
+        <form action="">
+          <input type="text" placeholder="search by name" />
+          <button class="btn btn-outline-primary">SEARCH</button>
+        </form>
+      </div>
+    </div>
+    <div class="my_container">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <td>Pic</td>
+            <td>User</td>
+            <td>Name</td>
+            <td>Surename</td>
+	    <td>Affiliation</td>
+            <td>Active</td>
+            <td>Delete</td>
+            <td>Edit</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < m_list.length; i++) { %>
+          <tr>
+            <td><img src="<%= m_list[i].img_path %>" alt="" height="97" /></td>
+            <td><%= m_list[i].username %></td>
+            <td><%= m_list[i].name %></td>
+            <td><%= m_list[i].surename %></td>
+	    <td><%= m_list[i].affiliation %></td>
+            <td><%= m_list[i].active %></td>
+            <td>
+              <form
+                method="POST"
+                action="/confirmdel/<%= m_list[i].id %>?_method=DELETE"
+              >
+                <button class="btn btn-danger">DELETE</button>
+              </form>
+            </td>
+            <td>
+              <form method="POST" action="/edituser">
+                <input
+                  type="hidden"
+                  id="id"
+                  name="id"
+                  value="<%= m_list[i].id %>"
+                />
+                <button class="btn btn-warning">EDIT</button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

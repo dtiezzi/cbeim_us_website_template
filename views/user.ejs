@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/user.css" />
+    <title><%= name%> <%= surename%></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><strong>HOME</strong></a>
+        <a
+          class="navbar-brand"
+          href="/information"
+          target="_blank"
+          id="info_top"
+          ><strong>Informações de Preenchimento</strong></a
+        >
+        <form class="d-flex" method="GET" action="/logout">
+          <input class="form-control me-2" type="hidden" />
+          <button class="btn btn-danger" type="submit">LOG OUT</button>
+        </form>
+      </div>
+    </nav>
+    <div class="container">
+      <div id="img_user">
+        <% if(img_path) { %>
+        <img src="<%= img_path %>" alt="cov_logo" height="250" />
+        <% } else { %>
+        <h3>No picture available!</h3>
+        <% } %>
+      </div>
+      <br /><br />
+      <div id="info">
+        <h4><strong>Name:</strong> <%= name %></h4>
+        <h4><strong>Surename:</strong> <%= surename %></h4>
+        <h4><strong>Affiliation:</strong> <%= affiliation %></h4>
+        <h4><strong>CRM:</strong> <%= crg %></h4>
+        <h4><strong>State:</strong> <%= state %></h4>
+        <h4><strong>Email:</strong> <%= email %></h4>
+      </div>
+      <div id="database">
+        <h3>Banco de Dados: Resumo</h3>
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <td>BR2</td>
+              <td>BR3</td>
+              <td>BR4A</td>
+              <td>BR4B</td>
+              <td>BR4C</td>
+              <td>BR5</td>
+              <td>BR6</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= m_list1.br2 %></td>
+              <td><%= m_list1.br3 %></td>
+              <td><%= m_list1.br4A %></td>
+              <td><%= m_list1.br4B %></td>
+              <td><%= m_list1.br4C %></td>
+              <td><%= m_list1.br5 %></td>
+              <td><%= m_list1.br6 %></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <td>Benigno</td>
+              <td>Maligno</td>
+              <td>Lesão de Risco</td>
+              <td>Indefinido</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= m_list2.benign %></td>
+              <td><%= m_list2.malignant %></td>
+              <td><%= m_list2.lr %></td>
+              <td><%= m_list2.undefined %></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <td>Instituição</td>
+              <td>Casos Total</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (const [key, value] of Object.entries(m_list3)) { %>
+            <tr>
+              <td><%= key %></td>
+              <td><%= value %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <a href="ptregister" type="button" class="btn btn-primary"
+          >NOVO PACIENTE</a
+        >
+      </div>
+    </div>
+    <div id="adds" class="container">
+      <div>
+        <h3>Inserir dados adicionais</h3>
+      </div>
+      <div id="btns_adds">
+        <!-- <a href=" " type="button" class="btn btn-lg btn-danger">REVISAR</a> -->
+        <form action="/ptsearch" method="GET" id="form-btn">
+          <input type="hidden" name="search_type" value="pathology" />
+          <button type="submit" class="btn btn-lg btn-outline-danger">
+            PATOLOGIA
+          </button>
+        </form>
+        <form action="/ptsearch" method="GET" id="form-btn">
+          <input type="hidden" name="search_type" value="newimg" />
+          <button type="submit" class="btn btn-lg btn-outline-danger">
+            NOVA IMAGEM
+          </button>
+        </form>
+        <form action="/ptsearch" method="GET" id="form-btn">
+          <input type="hidden" name="search_type" value="pdf" />
+          <button type="submit" class="btn btn-lg btn-outline-danger">
+            LAUDO US
+          </button>
+        </form>
+        <form action="/ptsearch" method="GET" id="form-btn">
+          <input type="hidden" name="search_type" value="newnodule" />
+          <button type="submit" class="btn btn-lg btn-outline-danger">
+            NOVO NÓDULO
+          </button>
+        </form>
+      </div>
+    </div>
+    <div id="btns">
+      <% if(admin) { %>
+      <form class="d-flex" method="GET" action="/admin">
+        <input class="form-control me-2" type="hidden" />
+        <button class="btn btn-secondary" type="submit">EDIT MEMBERS</button>
+      </form>
+      <% } %>
+      <div>
+        <form action="/searchmyus" method="POST">
+          <input type="hidden" name="username" />
+          <button class="btn btn-lg btn-outline-primary">Buscar Laudos</button>
+        </form>
+      </div>
+      <form action="/ptsearch" method="GET" id="form-btn">
+        <input type="hidden" name="search_type" value="reviewus" />
+       <!--  <button type="submit" class="btn btn-lg btn-danger">
+          REVISAR LAUDO US
+        </button> -->
+      </form>
+      <a href="/updateuser"
+        ><button class="btn btn-lg btn-warning">Meus Dados</button></a
+      >
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

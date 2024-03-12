@@ -1,0 +1,24 @@
+.container {
+  background-color: rgb(26, 26, 39);
+  color: floralwhite;
+  text-align: center;
+  height: auto;
+  padding-top: 2%;
+  padding-bottom: 4%;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#btns {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+#info_top {
+  background-color: rgb(255, 0, 21);
+  padding: 7px;
+  border-radius: 10px;
+}

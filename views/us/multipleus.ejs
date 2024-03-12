@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/multiple.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><strong>US HOME</strong></a>
+        <a
+          class="navbar-brand"
+          href="/information"
+          target="_blank"
+          id="info_top"
+          ><strong>Informações de Preenchimento</strong></a
+        >
+        <form class="d-flex" method="GET" action="/logout">
+          <input class="form-control me-2" type="hidden" />
+          <button class="btn btn-danger" type="submit">LOG OUT</button>
+        </form>
+      </div>
+    </nav>
+    <div
+      class="container"
+      style="
+        background-color: rgb(245, 245, 248);
+        color: floralwhite;
+        text-align: center;
+        height: auto;
+        margin-top: 5%;
+        padding-top: 2%;
+        padding-bottom: 4%;
+      "
+    >
+      <h1 style="margin-bottom: 2%; color: rgb(8, 8, 8)">
+        Paciente <%= pt_id %> possui multiplos nódulos:
+      </h1>
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <td>Imagem</td>
+            <td>_id</td>
+            <td>Data</td>
+            <td>BIRADS</td>
+            <td>Tamanho</td>
+            <td>Selecionar</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < result.length; i++) { %>
+          <tr>
+            <td><img src="<%= result[i].img_path0 %>" alt="" height="97" /></td>
+            <td><%= result[i]._id %></td>
+            <td><%= moment(result[i].us_date).format( 'MMM-DD-YYYY') %></td>
+            <td><%= result[i].birads %></td>
+            <td><%= result[i].size %></td>
+            <td>
+              <form method="POST" action="/confirmid">
+                <div>
+                  <input
+                    type="hidden"
+                    id="_id"
+                    name="_id"
+                    value="<%= result[i]._id %>"
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="hidden"
+                    id="pt_id"
+                    name="pt_id"
+                    value="<%= result[i].pt_id %>"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="hidden"
+                    id="username"
+                    name="username"
+                    value="<%= result[i].username %>"
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="hidden"
+                    id="affiliation"
+                    name="affiliation"
+                    value="<%= result[i].affiliation %>"
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="hidden"
+                    id="search_type"
+                    name="search_type"
+                    value="<%= source %>"
+                  />
+                </div>
+                <button type="submit" class="btn btn-danger">SELECIONAR</button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <a href="/user" type="button" class="btn btn-warning btn-lg">CANCELAR</a>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

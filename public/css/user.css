@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 2%;
+  margin-bottom: 3%;
+  align-items: center;
+}
+
+div#btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 3%;
+}
+
+div#info {
+  border: 4px solid black;
+  padding: 3%;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+div#img_user {
+  display: flex;
+  justify-content: space-around;
+}
+
+div#database {
+  border: 4px solid black;
+  padding: 3%;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+a.btn.btn-primary {
+  float: right;
+}
+
+#adds {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  border: 4px solid black;
+  border-radius: 10px;
+  padding: 2%;
+}
+
+#btns_adds {
+  margin-top: 7px;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+
+#form-btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#info_top {
+  background-color: rgb(255, 0, 21);
+  padding: 7px;
+  border-radius: 10px;
+}
+
+td {
+  text-align: center;
+}

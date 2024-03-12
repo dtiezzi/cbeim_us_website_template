@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/usregister.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><strong>US HOME</strong></a>
+        <a
+          class="navbar-brand"
+          href="/information"
+          target="_blank"
+          id="info_top"
+          ><strong>Informações de Preenchimento</strong></a
+        >
+        <form class="d-flex" method="GET" action="/logout">
+          <input class="form-control me-2" type="hidden" />
+          <button class="btn btn-danger" type="submit">LOG OUT</button>
+        </form>
+      </div>
+    </nav>
+    <div class="container">
+      <h1 style="margin-bottom: 2%; color: rgb(236, 183, 49)">
+        Cadastrar Novo Nódulo para Paciente
+      </h1>
+      <form action="/newnodule" method="POST" enctype="multipart/form-data">
+        <div>
+          <input
+            type="hidden"
+            id="username"
+            name="username"
+            value="<%= username %>"
+          />
+        </div>
+        <div>
+          <input
+            type="hidden"
+            id="affiliation"
+            name="affiliation"
+            value="<%= affiliation %>"
+          />
+        </div>
+        <div>
+          <input type="hidden" id="pt_id" name="pt_id" value="<%= pt_id %>" />
+        </div>
+
+        <div class="row" id="rows">
+          <div class="col">
+            <label for="us_dt">Data</label>
+            <input
+              type="date"
+              class="form-control"
+              id="us_dt"
+              name="us_dt"
+              required
+              autofocus
+            />
+          </div>
+          <div class="col">
+            <label for="br">BIRADS</label>
+            <select class="form-control" id="br" name="br" required>
+              <option value="2">BIRADS 2</option>
+              <option value="3">BIRADS 3</option>
+              <option value="4A">BIRADS 4A</option>
+              <option value="4B">BIRADS 4B</option>
+              <option value="4C">BIRADS 4C</option>
+              <option value="5">BIRADS 5</option>
+              <option value="6">BIRADS 6</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="size">Tamnho (mm)</label>
+            <input
+              type="number"
+              class="form-control"
+              id="size"
+              name="size"
+              min="0"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="palpable">Palpável?</label>
+            <select class="form-control" id="palpable" name="palpable" required>
+              <option value="0">NÃO</option>
+              <option value="1">SIM</option>
+              <option value="9">NA</option>
+            </select>
+          </div>
+        </div>
+        <div class="row" id="rows">
+          <div class="col">
+            <label for="vessels">Vasos internos?</label>
+            <select class="form-control" id="vessels" name="vessels" required>
+              <option value="0">NÃO</option>
+              <option value="1">SIM</option>
+              <option value="9">NA</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="ir">IR</label>
+            <input
+              type="number"
+              class="form-control"
+              id="ir"
+              name="ir"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="shape">Forma</label>
+            <select class="form-control" id="shape" name="shape" required>
+              <option value="0">OVAL</option>
+              <option value="1">REDONDA</option>
+              <option value="2">IRREGULAR</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="margins">Margens</label>
+            <select class="form-control" id="margins" name="margins" required>
+              <option value="0">CIRCUNSCRITA</option>
+              <option value="1">ANGULAR</option>
+              <option value="2">INDISTINTA</option>
+              <option value="3">MICROLOBULADA</option>
+              <option value="4">ESPICULADA</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="orientation">Orientação</label>
+            <select
+              class="form-control"
+              id="orientation"
+              name="orientation"
+              required
+            >
+              <option value="0">PARALELO</option>
+              <option value="1">NÃO PARALELO</option>
+            </select>
+          </div>
+        </div>
+        <div class="row" id="rows">
+          <div class="col">
+            <label for="img_path">Fazer upload da imagem:</label>
+            <input type="file" id="img_path" name="img_path" multiple />
+          </div>
+        </div>
+        <div class="row" id="rows">
+          <div class="col">
+            <a href="/user">
+              <button class="btn btn-warning btn-lg" type="button">
+                CANCELAR
+              </button></a
+            >
+          </div>
+          <div class="col">
+            <button class="btn btn-danger btn-lg" type="submit">ENVIAR</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

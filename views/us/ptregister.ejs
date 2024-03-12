@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/ptregister.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><strong>HOME</strong></a>
+        <a
+          class="navbar-brand"
+          href="/information"
+          target="_blank"
+          id="info_top"
+          ><strong>Informações de Preenchimento</strong></a
+        >
+        <form class="d-flex" method="GET" action="/logout">
+          <input class="form-control me-2" type="hidden" />
+          <button class="btn btn-danger" type="submit">LOG OUT</button>
+        </form>
+      </div>
+    </nav>
+    <div class="container">
+      <form action="/usregister" method="GET">
+        <h1 style="margin-bottom: 2%; color: rgb(236, 183, 49)">
+          Cadastrar Paciente no Banco de Dados
+        </h1>
+        <div>
+          <input
+            type="hidden"
+            id="username"
+            name="username"
+            value="<%= username %>"
+          />
+          <input
+            type="hidden"
+            id="affiliation"
+            name="affiliation"
+            value="<%= affiliation %>"
+          />
+        </div>
+        <div class="row" id="rows">
+          <div class="col">
+            <label for="pt_id" style="font-size: x-large">Registro</label>
+            <input
+              type="text"
+              class="form-control"
+              id="pt_id"
+              name="pt_id"
+              required
+              autofocus
+            />
+          </div>
+          <div class="col">
+            <label for="birth_dt" style="font-size: x-large"
+              >Data Nascimento</label
+            >
+            <input
+              type="date"
+              class="form-control"
+              id="birth_dt"
+              name="birth_dt"
+              required
+            />
+          </div>
+        </div>
+        <div class="row" id="rows">
+          <div class="col">
+            <label for="personal_history" style="font-size: x-large"
+              >História Pessoal de Câncer de Mama?</label
+            >
+            <select
+              class="form-control"
+              id="personal_history"
+              name="personal_history"
+              required
+            >
+              <option value="0">NÃO</option>
+              <option value="1">SIM</option>
+              <option value="">NA</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="familial_history" style="font-size: x-large"
+              >História Familiar de Câncer de Mama ou Ovário?
+            </label>
+            <select
+              class="form-control"
+              id="familial_history"
+              name="familial_history"
+              required
+            >
+              <option value="0">NÃO</option>
+              <option value="1">SIM</option>
+              <option value="">NA</option>
+            </select>
+          </div>
+        </div>
+        <div class="row" id="rows">
+          <div class="col">
+            <label for="mutation" style="font-size: x-large"
+              >Mutação Conhecida?</label
+            >
+            <select class="form-control" id="mutation" name="mutation" required>
+              <option value="0">NÃO</option>
+              <option value="1">SIM</option>
+              <option value="">NA</option>
+            </select>
+          </div>
+	<input type="hidden" value="NA" name="previous_bx">
+        </div>
+        <div class="row" id="rows">
+          <div class="col" style="padding-top: 3.5%">
+            <a href="/user">
+              <button class="btn btn-warning btn-lg" type="button">
+                CANCELAR
+              </button></a
+            >
+          </div>
+          <div class="col" style="padding-top: 3.5%">
+            <button class="btn btn-danger btn-lg" type="submit">ENVIAR</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

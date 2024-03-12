@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 3%;
+}
+
+div#bigone {
+  display: block;
+}
+
+div#affi {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 3px;
+  padding: 3px;
+}
+
+div#user {
+  margin: 10px;
+  padding: 17px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 257px;
+  height: 377px;
+}
+
+nav.navbar.navbar-dark.bg-dark {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+a.btn.btn-lg.btn-primary {
+  margin-top: 3%;
+}

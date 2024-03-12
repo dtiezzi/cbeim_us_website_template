@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/user.css" />
+  </head>
+  <body>
+  <script>
+      function hide(x) {
+        if (x)
+          document.getElementById("case_report").style.display="none"
+        else
+          document.getElementById("case_report").style.display="inline-block"
+      }
+    </script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><strong>HOME</strong></a>
+        <a
+          class="navbar-brand"
+          href="#"
+          target="_blank"
+          id="info_top"
+          ><strong>Informações da Pesquisa</strong></a
+        >
+        <form class="d-flex" method="GET" action="/logout">
+          <input class="form-control me-2" type="hidden" />
+          <button class="btn btn-danger" type="submit">LOG OUT</button>
+        </form>
+      </div>
+    </nav>
+    
+    <div class="container">
+        <form action="/research1" method="POST">
+            <input type="hidden" name="user_id" value="<%= user_id %>">
+            <input type="hidden" name="real_br" value="<%= obj['birads'] %>">
+            <input type="hidden" name="img_id" value="<%= obj['img_id'] %>">
+            <input type="hidden" name="img_info" value="<%= img_info %>">
+            <% var count = count %>
+            <input type="hidden" name="count" value="<%= count %>">
+            <% var today = new Date().toISOString() %>
+            <% var age = (Date.parse(obj["bt_date"]) - Date.parse(obj["us_date"])) / (60*60*24*365.25*1000) %>
+            <div id="case_num" style="text-align: center;">
+                <h3>Caso: <%= count %></h3>
+            </div>
+            <div id="case_report" style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+                <h4>Idade : <%= Math.abs(Math.round(age)) %> anos </h4>
+                <h4> Palpável : <%= obj["palpable"] == 1 ? "SIM":"NÃO"; %> </h4>
+                <h4> Tamanho : <%= obj["size"] %> mm </h4>
+                <h4> Vasos : <%= obj["vessels"] == 1 ? "SIM":"NÃO"; %> </h4> 
+                <h4> IR : <%= obj["ir"] %></h4>   
+            </div>
+            <div id="us_img">
+                <img src="<%= obj['path_to_img'].split('/').slice(-2).join('/') %>" alt="" height="657">
+            </div>
+            <div id="radios" style="border-radius: 15px; border: 2px solid; display: flex; align-items: center; justify-content: space-around; padding: 10px; color: azure; background: black;">
+            <input type="radio" id="br2" name="resp" value="2">
+            <label for="br2" style="font-weight: bold;">BIRADS 2</label><br>
+            <input type="radio" id="br3" name="resp" value="3">
+            <label for="br3" style="font-weight: bold;">BIRADS 3</label><br>
+            <input type="radio" id="br4a" name="resp" value="4a">
+            <label for="br4a" style="font-weight: bold;">BIRADS 4A</label><br>
+            <input type="radio" id="br4b" name="resp" value="4b">
+            <label for="br4b" style="font-weight: bold;">BIRADS 4B</label><br>
+            <input type="radio" id="br4c" name="resp" value="4c">
+            <label for="br4c" style="font-weight: bold;">BIRADS 4C</label><br>
+            <input type="radio" id="br5" name="resp" value="5">
+            <label for="br5" style="font-weight: bold;">BIRADS 5</label><br>
+            </div>
+            
+            <div id="btn_adj" style="direction: rtl; margin: 15px;">
+                      <button type="submit" class="btn btn-primary">Próximo</button>
+            </div>
+        </form>
+    </div>
+    <script>
+      window.onload = hide(<%= img_info %>)
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/upuser.css" />
+    <title>Update User</title>
+  </head>
+  <body>
+    <script>
+      function yesnoCheck(that) {
+        if (that.value == "Other") {
+          document.getElementById("ifYes").style.display = "block";
+        } else {
+          document.getElementById("ifYes").style.display = "none";
+        }
+      }
+    </script>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><strong>US HOME</strong></a>
+        <form class="d-flex" method="GET" action="/logout">
+          <input class="form-control me-2" type="hidden" />
+          <button class="btn btn-danger" type="submit">LOGOUT</button>
+        </form>
+      </div>
+    </nav>
+    <div class="container">
+      <h1><%= user %>: UPDATE PROFILE</h1>
+      <form
+        action="/updateuser"
+        method="POST"
+        id="register_form"
+        novalidate
+        enctype="multipart/form-data"
+      >
+        <input type="hidden" id="id" name="id" value="<%= id %>" />
+        <div>
+          <label for="name">Nome</label><br />
+          <input
+            class="form-control"
+            type="text"
+            name="name"
+            id="name"
+            placeholder="<%= name %>"
+            value="<%= name %>"
+            autofocus
+            required
+          />
+        </div>
+
+        <div>
+          <label for="surename">Sobrenome</label><br />
+          <input
+            class="form-control"
+            type="text"
+            name="surename"
+            id="surename"
+            placeholder="<%= surename %>"
+            value="<%= surename %>"
+            required
+          />
+        </div>
+        <div>
+          <label for="affiliation">Instituição</label><br />
+          <select
+            name="affiliation"
+            id="affiliation"
+            class="form-control"
+            onchange="yesnoCheck(this);"
+          >
+            <% for(var i=0; i < affiliation.length; i++) { %>
+            <option value="<%= affiliation[i]%>"><%= affiliation[i]%></option>
+            <% } %>
+          </select>
+        </div>
+        <div id="ifYes" style="display: none">
+          <label for="aff_other">Outra Instituição?</label>
+          <input
+            type="text"
+            id="aff_other"
+            name="aff_other"
+            class="form-control"
+          />
+        </div>
+        <div>
+          <label for="crg">Mini-CV</label><br />
+          <textarea
+            class="form-control"
+            type="text"
+            name="minicv"
+            id="minicv"
+            placeholder="<%= minicv %>"
+            value="<%= minicv %>"
+            required
+          ></textarea>
+        </div>
+        <div>
+          <label for="crg">Inscrição Conselho (CRM)</label><br />
+          <input
+            class="form-control"
+            type="text"
+            name="crg"
+            id="crg"
+            placeholder="<%= crg %>"
+            value="<%= crg %>"
+            required
+          />
+        </div>
+        <div>
+          <label for="state">Estado</label><br />
+          <select name="state" id="state" class="form-control">
+            <option value="SP">SP</option>
+          </select>
+        </div>
+        <div>
+          <label for="email">Email</label><br />
+          <input
+            class="form-control"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="<%= email %>"
+            value="<%= email %>"
+            required
+          />
+        </div>
+        <div>
+          <label for="image">Your picture</label><br />
+          <input
+            class="form-control"
+            type="file"
+            name="image"
+            id="image"
+            placeholder="Select image"
+            value="<%= image %>"
+            required
+          />
+        </div>
+        <br />
+        <div id="btnc">
+          <a class="btn btn-lg btn-danger" href="/user" type="button">CANCEL</a>
+          <button type="submit" class="btn btn-lg btn-warning">UPDATE</button>
+        </div>
+      </form>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

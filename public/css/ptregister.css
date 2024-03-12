@@ -1,0 +1,16 @@
+.container {
+  margin-top: 7%;
+  padding: 3%;
+  background-color: rgb(26, 26, 39);
+  color: floralwhite;
+}
+
+#info_top {
+  background-color: rgb(255, 0, 21);
+  padding: 7px;
+  border-radius: 10px;
+}
+
+#rows {
+  margin: 3%;
+}
