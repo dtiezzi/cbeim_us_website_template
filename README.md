@@ -1,2 +1,3 @@
-<img src='./public/images/cbein.png'>
-Website template developed for CBEIM - US project
+## Website template developed for CBEIM - US project
+
+<img src='./public/images/cbeim.png'>
